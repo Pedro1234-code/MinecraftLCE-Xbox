@@ -479,8 +479,7 @@ void SoundEngine::play(int iSound, float x, float y, float z, float volume, floa
 		char basePlusExt[256];
 		sprintf_s(basePlusExt, "%s%s", basePath, extensions[extIdx]);
 		
-		DWORD attr = GetFileAttributesA(basePlusExt);
-		if (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY))
+		if (FileExists(basePlusExt))
 		{
 			sprintf_s(finalPath, "%s", basePlusExt);
 			found = true;
@@ -499,8 +498,7 @@ void SoundEngine::play(int iSound, float x, float y, float z, float volume, floa
 				char numberedPath[256];
 				sprintf_s(numberedPath, "%s%d%s", basePath, i, extensions[extIdx]);
 				
-				DWORD attr = GetFileAttributesA(numberedPath);
-				if (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY))
+				if (FileExists(numberedPath))
 				{
 					count = i;
 				}
@@ -515,8 +513,7 @@ void SoundEngine::play(int iSound, float x, float y, float z, float volume, floa
 				char numberedPath[256];
 				sprintf_s(numberedPath, "%s%d%s", basePath, chosen, extensions[extIdx]);
 				
-				DWORD attr = GetFileAttributesA(numberedPath);
-				if (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY))
+				if (FileExists(numberedPath))
 				{
 					sprintf_s(finalPath, "%s", numberedPath);
 					found = true;
